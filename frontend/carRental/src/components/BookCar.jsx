@@ -5,6 +5,7 @@ import CarToyota from "../images/cars-big/toyotacamry.jpg";
 import CarBmw from "../images/cars-big/bmw320.jpg";
 import CarMercedes from "../images/cars-big/benz.jpg";
 import CarPassat from "../images/cars-big/passatcc.jpg";
+import API_BASE_URL from "../constant/api";
 
 function BookCar() {
   const [modal, setModal] = useState(false); //  class - active-modal
@@ -80,6 +81,46 @@ function BookCar() {
     }
   };
 
+  const userId = localStorage.getItem("userID"); // Get userId from localStorage
+
+  const carMapping = {
+    "Audi A1 S-Line": 1,
+    "VW Golf 6": 2,
+    "Toyota Camry": 3,
+    "BMW 320 ModernLine": 4,
+    "Mercedes-Benz GLK": 5,
+    "VW Passat CC": 6,
+  };
+
+  const handleBookRide = async (car) => {
+    try {
+      const carId = carMapping[car] || null; // Get car_id or null if the car is not in the mapping
+
+      if (!carId) {
+        console.error("Car not found in mapping");
+        return;
+      }
+
+      const response = await fetch(`${API_BASE_URL}/transactions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          car_id: carId,
+          transaction_type: "test_drive",
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Ride booked successfully!");
+      } else {
+        console.error("Failed to book ride:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error booking ride:", error);
+    }
+  };
+
   // disable page scroll when modal is displayed
   useEffect(() => {
     if (modal === true) {
@@ -92,6 +133,7 @@ function BookCar() {
   // confirm modal booking
   const confirmBooking = (e) => {
     e.preventDefault();
+    handleBookRide(carType);
     setModal(!modal);
     const doneMsg = document.querySelector(".booking-done");
     doneMsg.style.display = "flex";
