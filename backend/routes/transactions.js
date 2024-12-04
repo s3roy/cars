@@ -4,15 +4,20 @@ const db = require("../db/connection");
 const router = express.Router();
 
 // Book a test drive or buy a car
+// Add a transaction
 router.post("/", async (req, res) => {
   const { user_id, car_id, transaction_type } = req.body;
 
   try {
+    const booking_id = Math.random().toString(36).substr(2, 9).toUpperCase(); // Generate unique booking ID
     await db.query(
       "INSERT INTO transactions (user_id, car_id, transaction_type) VALUES (?, ?, ?)",
       [user_id, car_id, transaction_type]
     );
-    res.status(201).json({ message: `${transaction_type} successful` });
+    res.status(201).json({
+      message: "Transaction added successfully",
+      booking_id: booking_id,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

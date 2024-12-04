@@ -20,6 +20,7 @@ function SignIn() {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data.token); // Save token
+        localStorage.setItem("userID", data.userId); // Save token
         localStorage.setItem("username", email.split("@")[0]); // Save username (or fetch from API)
         setMessage("Login Successful!");
         navigate("/"); // Redirect to home page

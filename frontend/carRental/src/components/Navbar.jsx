@@ -15,6 +15,7 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from localStorage
     localStorage.removeItem("username"); // Optional: Remove username if stored
+    localStorage.removeItem("userId");
     setIsSignedIn(false);
     setUsername("");
     navigate("/signin"); // Redirect to Sign In page
@@ -94,6 +95,12 @@ function Navbar() {
             <li>
               <Link className="models-link" to="/compare">
                 Vehicle Compare
+              </Link>
+            </li>
+
+            <li>
+              <Link className="models-link" to="/transactions">
+                Transactions
               </Link>
             </li>
           </ul>
