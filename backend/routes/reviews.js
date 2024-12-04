@@ -18,6 +18,17 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/reviews", async (req, res) => {
+  try {
+    const [reviews] = await db.query(
+      "SELECT reviews.*, users.username FROM reviews JOIN users ON reviews.user_id = users.id"
+    );
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Get all reviews for a specific car
 router.get("/car/:carId", async (req, res) => {
   const { carId } = req.params;

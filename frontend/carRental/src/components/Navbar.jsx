@@ -91,6 +91,11 @@ function Navbar() {
                 Vehicle Models
               </Link>
             </li>
+            <li>
+              <Link className="models-link" to="/compare">
+                Vehicle Compare
+              </Link>
+            </li>
           </ul>
           <div className="navbar__buttons">
             {!isSignedIn ? (

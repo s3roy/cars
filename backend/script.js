@@ -47,3 +47,18 @@
 //     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 //     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
 // );
+
+// INSERT INTO users (username, email, password)
+// VALUES
+// ('John Doe', 'john@example.com', 'password123'),
+// ('Jane Smith', 'jane@example.com', 'password123'),
+// ('Bob Brown', 'bob@example.com', 'password123'),
+// ('Alice Green', 'alice@example.com', 'password123');
+
+// INSERT INTO cars (name, brand, price, engine_type, transmission, seats) VALUES
+// ('Audi A1', 'Audi', 45, 'Diesel', 'Manual', 4),
+// ('Golf 6', 'Volkswagen', 37, 'Diesel', 'Manual', 4),
+// ('Toyota Camry', 'Toyota', 30, 'Petrol', 'Automatic', 5),
+// ('BMW 320', 'BMW', 35, 'Diesel', 'Manual', 4),
+// ('Mercedes Benz GLK', 'Mercedes', 50, 'Diesel', 'Automatic', 5),
+// ('VW Passat', 'Volkswagen', 25, 'Diesel', 'Manual', 4);
